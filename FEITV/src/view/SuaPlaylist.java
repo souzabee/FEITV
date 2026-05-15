@@ -1,0 +1,427 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+package view;
+
+import dao.Conexao;
+import dao.PlaylistDAO;
+import java.sql.Connection;
+import java.util.List;
+import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JOptionPane;
+import model.Usuario;
+import controller.PlaylistController;
+
+public class SuaPlaylist extends javax.swing.JFrame {
+    
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SuaPlaylist.class.getName());
+    private Usuario usuarioLogado;
+    private PlaylistController playlistController = new PlaylistController();
+    
+    public SuaPlaylist() {
+        initComponents();
+        setLocationRelativeTo(null);
+    }
+
+    public SuaPlaylist(Usuario usuarioLogado) {
+        initComponents();
+        this.usuarioLogado = usuarioLogado;
+        setLocationRelativeTo(null);
+        carregarPlaylists();
+        
+        List<String> playlists = playlistController.listarPlaylists(usuarioLogado);
+
+        jPanel2.setVisible(false);
+        jPanel3.setVisible(false);
+        jPanel4.setVisible(false);
+
+        if (playlists.size() > 0) {
+            nomePlaylist1.setText(playlists.get(0));
+            jPanel2.setVisible(true);
+        }
+
+        if (playlists.size() > 1) {
+            nomePlaylist2.setText(playlists.get(1));
+            jPanel3.setVisible(true);
+        }
+
+        if (playlists.size() > 2) {
+            nomePlaylist3.setText(playlists.get(2));
+            jPanel4.setVisible(true);
+        }
+    }
+
+     private void carregarPlaylists() {
+        try (Connection conn = new Conexao().getConnection()) {
+            PlaylistDAO dao = new PlaylistDAO(conn);
+            List<String> playlists = dao.listarPlaylistsDoUsuario(usuarioLogado.getId());
+
+            jPanel2.setVisible(false);
+            jPanel3.setVisible(false);
+            jPanel4.setVisible(false);
+
+            if (playlists.size() > 0) {
+                nomePlaylist1.setText(playlists.get(0));
+                jPanel2.setVisible(true);
+            }
+
+            if (playlists.size() > 1) {
+                nomePlaylist2.setText(playlists.get(1));
+                jPanel3.setVisible(true);
+            }
+
+            if (playlists.size() > 2) {
+                nomePlaylist3.setText(playlists.get(2));
+                jPanel4.setVisible(true);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao carregar playlists: " + e.getMessage());
+        }
+    }
+
+    public static Logger getLogger() {
+        return logger;
+    }
+
+    public JButton getAcessar_btn1() {
+        return acessar_btn1;
+    }
+
+    public JButton getAcessar_btn2() {
+        return acessar_btn2;
+    }
+
+    public JButton getAcessar_btn3() {
+        return acessar_btn3;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public JPanel getjPanel2() {
+        return jPanel2;
+    }
+
+    public JPanel getjPanel3() {
+        return jPanel3;
+    }
+
+    public JPanel getjPanel4() {
+        return jPanel4;
+    }
+
+    public JLabel getNomePlaylist1() {
+        return nomePlaylist1;
+    }
+
+    public JLabel getNomePlaylist2() {
+        return nomePlaylist2;
+    }
+
+    public JLabel getNomePlaylist3() {
+        return nomePlaylist3;
+    }
+
+    public JLabel getNomePlaylist_lbl() {
+        return nomePlaylist_lbl;
+    }
+
+    public void setAcessar_btn1(JButton acessar_btn1) {
+        this.acessar_btn1 = acessar_btn1;
+    }
+
+    public void setAcessar_btn2(JButton acessar_btn2) {
+        this.acessar_btn2 = acessar_btn2;
+    }
+
+    public void setAcessar_btn3(JButton acessar_btn3) {
+        this.acessar_btn3 = acessar_btn3;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    public void setjPanel2(JPanel jPanel2) {
+        this.jPanel2 = jPanel2;
+    }
+
+    public void setjPanel3(JPanel jPanel3) {
+        this.jPanel3 = jPanel3;
+    }
+
+    public void setjPanel4(JPanel jPanel4) {
+        this.jPanel4 = jPanel4;
+    }
+
+    public void setNomePlaylist1(JLabel nomePlaylist1) {
+        this.nomePlaylist1 = nomePlaylist1;
+    }
+
+    public void setNomePlaylist2(JLabel nomePlaylist2) {
+        this.nomePlaylist2 = nomePlaylist2;
+    }
+
+    public void setNomePlaylist3(JLabel nomePlaylist3) {
+        this.nomePlaylist3 = nomePlaylist3;
+    }
+
+    public void setNomePlaylist_lbl(JLabel nomePlaylist_lbl) {
+        this.nomePlaylist_lbl = nomePlaylist_lbl;
+    }
+    
+    
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        nomePlaylist_lbl = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        nomePlaylist1 = new javax.swing.JLabel();
+        acessar_btn1 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        nomePlaylist2 = new javax.swing.JLabel();
+        acessar_btn2 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        nomePlaylist3 = new javax.swing.JLabel();
+        acessar_btn3 = new javax.swing.JButton();
+        voltar_btn = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        nomePlaylist_lbl.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        nomePlaylist_lbl.setText("Suas playlists");
+
+        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
+
+        nomePlaylist1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        nomePlaylist1.setText("Nome1");
+
+        acessar_btn1.setText("Acessar");
+        acessar_btn1.addActionListener(this::acessar_btn1ActionPerformed);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(nomePlaylist1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(345, 345, 345)
+                        .addComponent(acessar_btn1)))
+                .addContainerGap(362, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(nomePlaylist1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(acessar_btn1)
+                .addContainerGap())
+        );
+
+        nomePlaylist2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        nomePlaylist2.setText("Nome2");
+
+        acessar_btn2.setText("Acessar");
+        acessar_btn2.addActionListener(this::acessar_btn2ActionPerformed);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(nomePlaylist2))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(343, 343, 343)
+                        .addComponent(acessar_btn2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(nomePlaylist2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(acessar_btn2)
+                .addContainerGap())
+        );
+
+        nomePlaylist3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        nomePlaylist3.setText("Nome3");
+
+        acessar_btn3.setText("Acessar");
+        acessar_btn3.addActionListener(this::acessar_btn3ActionPerformed);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(nomePlaylist3))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(343, 343, 343)
+                        .addComponent(acessar_btn3)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(nomePlaylist3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(acessar_btn3)
+                .addContainerGap())
+        );
+
+        voltar_btn.setText("Voltar");
+        voltar_btn.addActionListener(this::voltar_btnActionPerformed);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(366, 366, 366)
+                        .addComponent(voltar_btn)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(voltar_btn)
+                .addGap(21, 21, 21))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(285, Short.MAX_VALUE)
+                .addComponent(nomePlaylist_lbl)
+                .addGap(264, 264, 264))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(nomePlaylist_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void acessar_btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acessar_btn1ActionPerformed
+        // TODO add your handling code here:
+        Playlist tela = new Playlist(usuarioLogado, nomePlaylist1.getText());
+        tela.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_acessar_btn1ActionPerformed
+
+    private void acessar_btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acessar_btn2ActionPerformed
+        // TODO add your handling code here:
+        Playlist tela = new Playlist(usuarioLogado, nomePlaylist2.getText());
+        tela.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_acessar_btn2ActionPerformed
+
+    private void acessar_btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acessar_btn3ActionPerformed
+        // TODO add your handling code here:
+        Playlist tela = new Playlist(usuarioLogado, nomePlaylist3.getText());
+        tela.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_acessar_btn3ActionPerformed
+
+    private void voltar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltar_btnActionPerformed
+        // TODO add your handling code here:
+        TelaPrincipal tela = new TelaPrincipal(usuarioLogado);
+        tela.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_voltar_btnActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+//            logger.log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(() -> new SuaPlaylist().setVisible(true));
+//    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton acessar_btn1;
+    private javax.swing.JButton acessar_btn2;
+    private javax.swing.JButton acessar_btn3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel nomePlaylist1;
+    private javax.swing.JLabel nomePlaylist2;
+    private javax.swing.JLabel nomePlaylist3;
+    private javax.swing.JLabel nomePlaylist_lbl;
+    private javax.swing.JButton voltar_btn;
+    // End of variables declaration//GEN-END:variables
+}
