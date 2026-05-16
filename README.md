@@ -52,13 +52,7 @@ Exemplos:
 - `PlaylistController`
 - `CurtidaController`
 - `VideoController`
-
-Os controllers centralizam a lógica do sistema, como:
-- criar playlists;
-- adicionar filmes em playlists;
-- remover filmes de playlists;
-- validar curtidas e descurtidas;
-- buscar filmes no banco.
+- `UsuarioController`
 
 ### 3.4 DAO
 A camada **DAO (Data Access Object)** é responsável pela comunicação direta com o banco de dados.
@@ -148,6 +142,7 @@ Contém a lógica intermediária da aplicação:
 - controllers de playlist;
 - controllers de curtida;
 - controllers de vídeo.
+- controller do usuario
 
 ### `dao`
 Contém as classes de acesso ao banco:
