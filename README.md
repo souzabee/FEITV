@@ -1,5 +1,8 @@
 # Relatório do Projeto
 
+NOME: Artur Guimrães de Souza
+RA: 22.125.046-7
+
 ## 1. Identificação do projeto
 
 **Nome do projeto:** Sistema de gerenciamento de filmes e playlists  
